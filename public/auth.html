@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication | NewsKrish</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <a href="index.html" class="logo" style="position: absolute; top: 2rem; left: 2rem;">NewsKrish</a>
+        
+        <div class="auth-box glass">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login">Login</div>
+                <div class="auth-tab" id="tab-signup">Create Account</div>
+            </div>
+
+            <div id="alert-box" class="alert"></div>
+
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem; margin-top: 1rem;">Sign In</button>
+            </form>
+
+            <!-- Signup Form (Initially Hidden) -->
+            <form id="signup-form" style="display: none;">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signup-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="signup-email" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signup-password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Profile ID / Roll No</label>
+                    <input type="text" id="signup-profile-id" placeholder="e.g., 23IT001" required>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" id="signup-dept" placeholder="Information Technology" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem; margin-top: 1rem;">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const tabLogin = document.getElementById('tab-login');
+        const tabSignup = document.getElementById('tab-signup');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const alertBox = document.getElementById('alert-box');
+
+        // Tab Switching
+        tabLogin.addEventListener('click', () => {
+            tabLogin.classList.add('active');
+            tabSignup.classList.remove('active');
+            loginForm.style.display = 'block';
+            signupForm.style.display = 'none';
+            alertBox.style.display = 'none';
+        });
+
+        tabSignup.addEventListener('click', () => {
+            tabSignup.classList.add('active');
+            tabLogin.classList.remove('active');
+            signupForm.style.display = 'block';
+            loginForm.style.display = 'none';
+            alertBox.style.display = 'none';
+        });
+
+        const showAlert = (message, type) => {
+            alertBox.className = `alert ${type}`;
+            alertBox.innerText = message;
+        };
+
+        // Login Submit
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    window.location.href = 'profile.html';
+                } else {
+                    showAlert(data.message || 'Login failed', 'error');
+                }
+            } catch (err) {
+                showAlert('Server error. Please try again later.', 'error');
+            }
+        });
+
+        // Signup Submit
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('signup-name').value,
+                email: document.getElementById('signup-email').value,
+                password: document.getElementById('signup-password').value,
+                profile_id: document.getElementById('signup-profile-id').value,
+                department: document.getElementById('signup-dept').value,
+            };
+
+            try {
+                const res = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    showAlert('Account created successfully!', 'success');
+                    setTimeout(() => window.location.href = 'profile.html', 1000);
+                } else {
+                    // This handles duplicate email/profile_id gracefully
+                    showAlert(data.message || 'Signup failed', 'error');
+                }
+            } catch (err) {
+                showAlert('Server error. Please try again later.', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

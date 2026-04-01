@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsKrish | Your Premium News Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">NewsKrish</a>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search news...">
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="profile.html">Bookmarks</a>
+                <a href="profile.html">Feedback</a>
+                <a href="auth.html" class="btn-primary">Login / Signup</a>
+                <button id="theme-toggle" style="font-size: 1.2rem; color: var(--text-primary);">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-card">
+                <img src="https://images.unsplash.com/photo-1585829365234-78ef2757c818?auto=format&fit=crop&q=80&w=1200" alt="Breaking News" class="hero-img">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="badge">Breaking News</span>
+                    <h1 class="hero-title">Exclusive: Major Tech Breakthrough in AI Energy Efficiency</h1>
+                    <p class="hero-desc" style="color: var(--text-secondary); margin-bottom: 2rem;">Researchers unveil a new neural architecture that reduces power consumption by 90% while maintaining peak performance.</p>
+                    <a href="article.html" class="btn-primary">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="categories">
+            <button class="category-btn active">All News</button>
+            <button class="category-btn">Placements</button>
+            <button class="category-btn">Events</button>
+            <button class="category-btn">Departments</button>
+            <button class="category-btn">Exams</button>
+            <button class="category-btn">Sports</button>
+        </section>
+
+        <!-- News Grid -->
+        <section class="news-grid" id="news-container">
+            <!-- News Card 1 -->
+            <article class="news-card" data-category="placements">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=600" alt="News" class="card-img">
+                    <span class="badge" style="position: absolute; top: 1rem; left: 1rem;">Placements</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> 2 hours ago</span>
+                        <span>Admin</span>
+                    </div>
+                    <h3 class="card-title">Placement Season Starts: Top Companies Expected to Visit This Month</h3>
+                    <p class="card-desc">The university training and placement cell has announced the schedule for the upcoming recruitment drive featuring Fortune 500 companies.</p>
+                    <a href="article.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- News Card 2 -->
+            <article class="news-card" data-category="sports">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&q=80&w=600" alt="News" class="card-img">
+                    <span class="badge" style="position: absolute; top: 1rem; left: 1rem;">Sports</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> 5 hours ago</span>
+                        <span>Sports Desk</span>
+                    </div>
+                    <h3 class="card-title">Inter-College Sports Meet: Registration Now Open for All Athletes</h3>
+                    <p class="card-desc">Gear up for the biggest sports event of the year. Over 20 different sports categories are open for registration starting today.</p>
+                    <a href="article.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- News Card 3 -->
+            <article class="news-card" data-category="events">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600" alt="News" class="card-img">
+                    <span class="badge" style="position: absolute; top: 1rem; left: 1rem;">Events</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> 1 day ago</span>
+                        <span>Cultural Cell</span>
+                    </div>
+                    <h3 class="card-title">Annual Tech Fest "TechKrish 2026" Announced with Global Speakers</h3>
+                    <p class="card-desc">The most awaited technical festival is back with more innovation, workshops, and high-stakes competitions with prizes worth 10 Lakhs.</p>
+                    <a href="article.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- News Card 4 -->
+            <article class="news-card" data-category="exams">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600" alt="News" class="card-img">
+                    <span class="badge" style="position: absolute; top: 1rem; left: 1rem;">Exams</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> 2 days ago</span>
+                        <span>Examination Dept</span>
+                    </div>
+                    <h3 class="card-title">Semester Exam Guidelines Released: Check New Evaluation Pattern</h3>
+                    <p class="card-desc">The Controller of Examinations has released a detailed circular regarding the updated marks distribution and online platform usage.</p>
+                    <a href="article.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- News Card 5 -->
+            <article class="news-card" data-category="departments">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" alt="News" class="card-img">
+                    <span class="badge" style="position: absolute; top: 1rem; left: 1rem;">Departments</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> 3 days ago</span>
+                        <span>CSE Dept</span>
+                    </div>
+                    <h3 class="card-title">New Research Lab for Cybersecurity Inaugurated in Block C</h3>
+                    <p class="card-desc">The Department of Computer Science has established a state-of-the-art facility for research in threat analysis and ethical hacking.</p>
+                    <a href="article.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer style="background: var(--card-bg); padding: 4rem 0; margin-top: 5rem; border-top: 1px solid var(--border-color);">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem;">
+            <div>
+                <a href="index.html" class="logo">NewsKrish</a>
+                <p style="color: var(--text-secondary); margin-top: 1rem;">The leading source for campus news, events, and opportunities.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Quick Links</h4>
+                <ul style="color: var(--text-secondary); line-height: 2;">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="admin.html">Admin Panel</a></li>
+                    <li><a href="auth.html">Register</a></li>
+                    <li><a href="profile.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Categories</h4>
+                <ul style="color: var(--text-secondary); line-height: 2;">
+                    <li><a href="#">Placements</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Academic</a></li>
+                    <li><a href="#">Sports</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Subscribe</h4>
+                <div class="search-bar" style="width: 100%; margin-bottom: 1rem;">
+                    <input type="text" placeholder="Email address">
+                </div>
+                <button class="btn-primary" style="width: 100%;">Join Newsletter</button>
+            </div>
+        </div>
+        <div class="container" style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
+            <p>&copy; 2026 NewsKrish Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const icon = toggleBtn.querySelector('i');
+        
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            icon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+
+        const newsContainer = document.getElementById('news-container');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const searchInput = document.querySelector('.search-bar input');
+        
+        let currentPage = 1;
+        let currentCategory = 'all news';
+        let currentSearch = '';
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                currentSearch = e.target.value;
+                currentPage = 1;
+                fetchNews();
+            }
+        });
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                currentCategory = btn.innerText.toLowerCase().trim();
+                currentPage = 1;
+                fetchNews();
+            });
+        });
+
+        async function fetchNews() {
+            // Show Skeleton loader
+            newsContainer.innerHTML = Array(3).fill(`
+                <article class="news-card glass" style="opacity: 0.6; min-height: 400px; display:flex; flex-direction:column;">
+                    <div style="height: 200px; background: var(--border-color); animation: pulse 1.5s infinite;"></div>
+                    <div style="padding: 1.5rem; flex: 1;">
+                        <div style="height: 20px; width: 40%; background: var(--border-color); margin-bottom: 1rem;"></div>
+                        <div style="height: 30px; width: 80%; background: var(--border-color); margin-bottom: 1rem;"></div>
+                        <div style="height: 60px; width: 100%; background: var(--border-color);"></div>
+                    </div>
+                </article>
+            `).join('');
+
+            try {
+                const response = await fetch(`/api/news?cat=${currentCategory}&search=${currentSearch}&page=${currentPage}`);
+                const data = await response.json();
+                renderNews(data);
+            } catch (err) {
+                console.error('Error fetching news:', err);
+                newsContainer.innerHTML = '<p>Failed to load news.</p>';
+            }
+        }
+
+        function renderNews(data) {
+            newsContainer.innerHTML = '';
+            const newsItems = data.articles || [];
+            
+            if (newsItems.length === 0) {
+                newsContainer.innerHTML = '<p>No news found.</p>';
+                return;
+            }
+
+            newsItems.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'news-card';
+                card.setAttribute('data-category', item.category);
+                
+                const authorName = item.author ? item.author.name : 'Unknown';
+                const img = item.image_url || 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600';
+                
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${img}" alt="News" class="card-img">
+                        <span class="badge" style="position: absolute; top: 1rem; left: 1rem; text-transform: capitalize;">${item.category}</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span><i class="far fa-clock"></i> ${new Date(item.createdAt).toLocaleDateString()}</span>
+                            <span>${authorName}</span>
+                        </div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-desc">${item.content.substring(0, 100)}...</p>
+                        <a href="article.html?id=${item._id}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                `;
+                newsContainer.appendChild(card);
+                
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.4s ease';
+                    card.style.opacity = '1';
+                }, 10);
+            });
+
+            const pagination = document.createElement('div');
+            pagination.style.gridColumn = '1 / -1';
+            pagination.style.display = 'flex';
+            pagination.style.justifyContent = 'center';
+            pagination.style.gap = '1rem';
+            pagination.style.marginTop = '2rem';
+
+            if (data.page > 1) {
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'btn-primary';
+                prevBtn.innerText = 'Previous';
+                prevBtn.onclick = () => { currentPage--; fetchNews(); };
+                pagination.appendChild(prevBtn);
+            }
+
+            if (data.page < data.pages) {
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'btn-primary';
+                nextBtn.innerText = 'Next';
+                nextBtn.onclick = () => { currentPage++; fetchNews(); };
+                pagination.appendChild(nextBtn);
+            }
+
+            newsContainer.appendChild(pagination);
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = '@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }';
+        document.head.appendChild(style);
+
+        fetchNews();
+    </script>
+</body>
+</html>

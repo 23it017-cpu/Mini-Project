@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Detail | NewsKrish</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">NewsKrish</a>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search news...">
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="profile.html">Bookmarks</a>
+                <a href="profile.html">Feedback</a>
+                <a href="auth.html" class="btn-primary">Login / Signup</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="article-main">
+        <div class="container" style="padding: 5rem 0; text-align: center;">
+            <p>Loading article...</p>
+        </div>
+    </main>
+
+    <footer style="background: var(--card-bg); padding: 4rem 0; margin-top: 5rem; border-top: 1px solid var(--border-color);">
+        <!-- Footer content (same as index.html) -->
+        <div class="container" style="text-align: center; color: var(--text-secondary);">
+            <p>&copy; 2026 NewsKrish Portal. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+            const mainContainer = document.getElementById('article-main');
+
+            if (!articleId) {
+                mainContainer.innerHTML = '<div class="container" style="padding: 5rem 0;"><h2>Article not found</h2></div>';
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/news/${articleId}`);
+                if (!res.ok) throw new Error('Failed to fetch');
+                const article = await res.json();
+                
+                const authorName = article.author ? article.author.name : 'Unknown';
+
+                mainContainer.innerHTML = `
+        <div class="article-header">
+            <img src="${article.image_url}" alt="Hero" class="hero-img">
+            <div class="hero-overlay"></div>
+            <div class="container" style="position: relative; height: 100%; display: flex; align-items: flex-end; padding-bottom: 3rem;">
+                <div class="hero-content" style="max-width: 800px;">
+                    <span class="badge" style="text-transform: capitalize;">${article.category}</span>
+                    <h1 class="hero-title" style="font-size: 3.5rem;">${article.title}</h1>
+                    <div class="card-meta" style="color: white; margin-top: 1.5rem;">
+                        <span><i class="far fa-calendar"></i> ${new Date(article.createdAt).toLocaleDateString()}</span>
+                        <span><i class="far fa-user"></i> By ${authorName}</span>
+                        <span><i class="far fa-eye"></i> ${article.views} views</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; margin-top: 3rem;">
+            <article class="article-content" style="color: var(--text-primary);">
+                <div style="font-size: 1.1rem; line-height: 1.8;">
+                    ${article.content.split('\\n').map(p => '<p style="margin-bottom: 1.5rem;">' + p + '</p>').join('')}
+                </div>
+
+                <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; gap: 2rem;">
+                    <span>Share:</span>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+                <div class="glass" style="padding: 2rem; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white;">
+                    <h3 style="margin-bottom: 1rem;">Newsletter</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Get the latest updates delivered to your inbox.</p>
+                    <input type="text" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: none; margin-bottom: 1rem;">
+                    <button class="btn-primary" style="background: white; color: var(--primary-color); width: 100%;">Subscribe</button>
+                </div>
+            </aside>
+        </div>
+                `;
+            } catch (err) {
+                mainContainer.innerHTML = '<div class="container" style="padding: 5rem 0;"><h2>Error loading article.</h2></div>';
+            }
+        });
+    </script>
+</body>
+</html>
