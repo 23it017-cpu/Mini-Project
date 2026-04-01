@@ -1,1 +1,1 @@
-# News-Portal-
+# News-Portal - Mini-Project
